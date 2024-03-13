@@ -47,6 +47,7 @@ impl fmt::Display for Cell {
 
 #[cfg_attr(feature = "wasm", wasm_bindgen)]
 impl Cell {
+    #[cfg_attr(feature = "wasm", wasm_bindgen(constructor))]
     pub fn new(x: i64, y: i64) -> Self {
         Cell { x: x, y: y }
     }
