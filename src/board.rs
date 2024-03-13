@@ -71,6 +71,10 @@ impl Board {
         return (count, neighbor_cells);
     }
     #[cfg_attr(feature = "wasm", wasm_bindgen)]
+    pub fn get_cells(&self) -> Vec<Cell> {
+        return Vec::from_iter(self.map.iter().cloned())
+    }
+    #[cfg_attr(feature = "wasm", wasm_bindgen)]
     pub fn surround_count(&self, cell: &Cell) -> u8 {
         return self.surround_data(cell, None).0;
     }
