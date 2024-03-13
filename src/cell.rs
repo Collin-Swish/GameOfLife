@@ -12,7 +12,6 @@ pub struct Cell{
 
 impl Add for Cell {
     type Output = Self;
-
     fn add(self, other: Self) -> Self {
         Self {
             x: self.x + other.x,
@@ -22,7 +21,7 @@ impl Add for Cell {
 }
 impl Mul for Cell {
     type Output = Self;
-
+    
     fn mul(self, rhs: Self) -> Self {
         Self { x: self.x * rhs.x, y: self.y * rhs.y }
     }
@@ -48,8 +47,15 @@ impl fmt::Display for Cell {
 
 #[cfg_attr(feature = "wasm", wasm_bindgen)]
 impl Cell {
-    #[cfg_attr(feature = "wasm", wasm_bindgen(constructor))]
     pub fn new(x: i64, y: i64) -> Self {
         Cell { x: x, y: y }
+    }
+    #[cfg_attr(feature = "wasm", wasm_bindgen)]
+    pub fn mul(&self, other: Cell) -> Cell {
+        return self.clone() * other;
+    }
+    #[cfg_attr(feature = "wasm", wasm_bindgen)]
+    pub fn add(&self, other: Cell) -> Cell {
+        return self.clone() + other;
     }
 }
