@@ -4,7 +4,7 @@ use std::fmt;
 use wasm_bindgen::prelude::*;
 
 #[cfg_attr(feature = "wasm", wasm_bindgen)]
-#[derive(Eq, Hash, PartialEq, Clone)]
+#[derive(Eq, Hash, PartialEq, Clone, Copy)]
 pub struct Cell{
     pub x: i64,
     pub y: i64,
@@ -52,11 +52,11 @@ impl Cell {
         Cell { x: x, y: y }
     }
     #[cfg_attr(feature = "wasm", wasm_bindgen)]
-    pub fn mul(&self, other: Cell) -> Cell {
-        return self.clone() * other;
+    pub fn mul(&self, other: &Cell) -> Cell {
+        return self.clone() * other.clone();
     }
     #[cfg_attr(feature = "wasm", wasm_bindgen)]
-    pub fn add(&self, other: Cell) -> Cell {
-        return self.clone() + other;
+    pub fn add(&self, other: &Cell) -> Cell {
+        return self.clone() + other.clone();
     }
 }
