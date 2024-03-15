@@ -57,6 +57,15 @@ impl Board {
         let cell = Cell::new(x as i64, y as i64);
         self.remove(&cell);
     }
+    #[cfg_attr(feature = "wasm", wasm_bindgen)]
+    pub fn toggle(&mut self, x: i32, y: i32) {
+        let cell: Cell = Cell::new(x as i64, y as i64);
+        if self.map.contains(&cell) {
+            self.map.remove(&cell);
+            return;
+        }
+        self.map.insert(cell);
+    }
     fn surround_data(&self, cell: &Cell, neighbors: Option<[Cell; 8]>) -> (u8, [Cell; 8]) {
         let neighbor_cells = match neighbors {
             Some(cells) => cells,
