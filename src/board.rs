@@ -66,6 +66,10 @@ impl Board {
         }
         self.map.insert(cell);
     }
+    #[cfg_attr(feature = "wasm", wasm_bindgen)]
+    pub fn copy(&self) -> Self {
+        self.clone()
+    }
     fn surround_data(&self, cell: &Cell, neighbors: Option<[Cell; 8]>) -> (u8, [Cell; 8]) {
         let neighbor_cells = match neighbors {
             Some(cells) => cells,
